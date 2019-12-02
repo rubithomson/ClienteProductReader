@@ -1,0 +1,770 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>eCommerce Product Detail</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet" />
+
+    
+  </head>
+    
+
+  <body>
+	
+      <form id="form1" runat="server">
+	
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab1" role="tablist">
+            <a class="nav-item nav-link active" id="nav-kiosko-tab" data-toggle="tab" href="#nav-kiosko" role="tab" aria-controls="nav-kiosko" aria-selected="true">Kiosko</a>
+            <a class="nav-item nav-link" id="nav-productos-tab" data-toggle="tab" href="#nav-productos" role="tab" aria-controls="nav-productos" aria-selected="false">Productos</a>
+         </div>
+    </nav>
+
+
+    <div class="tab-content" id="nav-tabContent1">
+      <!---------------------Este es el tab KIOSKO---------------->  
+      <div class="tab-pane fade" id="nav-kiosko" role="tabpanel" aria-labelledby="nav-kiosko-tab">
+
+	    <div class="container">
+
+            <nav>
+              <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-buscar-tab" data-toggle="tab" href="#nav-buscar" role="tab" aria-controls="nav-buscar" aria-selected="true">Buscar</a>
+                <a class="nav-item nav-link" id="btn-nav-catalogo-tab" data-toggle="tab" href="#btn-nav-catalogo" role="tab" aria-controls="btn-nav-catalogo" aria-selected="false">Catálogo</a>
+              </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+              <!------------tab Boton BUSCAR------------>
+              <div class="tab-pane fade show active" id="nav-buscar" role="tabpanel" aria-labelledby="nav-buscar-tab">
+
+                  <br />
+                      <div class="form-inline">
+                            <input type="text" class="form-control" placeholder="Buscar"/>
+                            <button type="submit" class="btn btn-primary">Buscar</button>
+                      </div>
+
+		        <div class="card">
+			        <div class="container-fliud">
+				        <div class="wrapper row">
+					        <div class="preview col-md-6">
+						
+						        <div class="preview-pic tab-content">
+						          <div class="tab-pane active" id="pic-1"><img src="http://placekitten.com/400/252" /></div>
+						          <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
+						          <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
+						          <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
+						          <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
+						        </div>
+						        <ul class="preview-thumbnail nav nav-tabs">
+						          <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+						          <li><a data-target="#pic-2" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+						          <li><a data-target="#pic-3" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+						          <li><a data-target="#pic-4" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+						          <li><a data-target="#pic-5" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+						        </ul>
+						
+					        </div>
+					        <div class="details col-md-6">
+
+                                <h6>Departamento</h6>
+						        <h3 class="product-title">NOMBRE DEL PRODUCTO</h3>
+						        <h4 class="price"><span>$180 </span>pza.</h4>
+						
+					        </div>
+				        </div>
+			        </div>
+		        </div>
+
+              </div>
+
+              <!------------tab Boton CATÁLOGO------------>
+              <div class="tab-pane fade" id="btn-nav-catalogo" role="tabpanel" aria-labelledby="btn-nav-catalogo-tab">
+                  <br />
+                      <div class="form-group">
+                        <select class="form-control" id="">
+                          <option>Departamento</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                        </select>
+                      </div>
+                  <div class="card-group">
+
+                      <div class="card" style="width: 18rem;">
+                          <img src="..." class="card-img-top" alt="...">
+                          <div class="card-body">
+                            <p class="product-title">
+                                NOMBRE DEL PRODUCTO
+                            </p>
+                            <p class="price">
+                                <span>$180 </span>pza.
+                            </p>
+                          </div>
+                     </div>
+                      <div class="card" style="width: 18rem;">
+                          <img src="..." class="card-img-top" alt="...">
+                          <div class="card-body">
+                            <p class="product-title">
+                                NOMBRE DEL PRODUCTO
+                            </p>
+                            <p class="price">
+                                <span>$180 </span>pza.
+                            </p>
+                          </div>
+                     </div>
+                      <div class="card" style="width: 18rem;">
+                          <img src="..." class="card-img-top" alt="...">
+                          <div class="card-body">
+                            <p class="product-title">
+                                NOMBRE DEL PRODUCTO
+                            </p>
+                            <p class="price">
+                                <span>$180 </span>pza.
+                            </p>
+                          </div>
+                     </div>
+
+                      
+                  </div>
+
+
+              </div>
+            </div>
+
+
+
+
+	    </div>
+
+
+      </div>
+
+        <!---------------------Este es el tab PRODUCTOS---------------->  
+      <div class="tab-pane fade show active" id="nav-productos" role="tabpanel" aria-labelledby="nav-productos-tab">
+          
+          <nav>
+          <div class="nav nav-tabs" id="nav-tab2" role="tablist">
+            <a class="nav-item nav-link" id="nav-nuevo-tab" data-toggle="tab" href="#nav-nuevo" role="tab" aria-controls="nav-nuevo" aria-selected="true">Nuevo</a>
+            <a class="nav-item nav-link" id="nav-modificar-tab" data-toggle="tab" href="#nav-modificar" role="tab" aria-controls="nav-modificar" aria-selected="false">Modificar</a>
+            <a class="nav-item nav-link" id="nav-eliminar-tab" data-toggle="tab" href="#nav-eliminar" role="tab" aria-controls="nav-eliminar" aria-selected="false">Eliminar</a>
+            <a class="nav-item nav-link active" id="nav-departamento-tab" data-toggle="tab" href="#nav-departamento" role="tab" aria-controls="nav-departamento" aria-selected="false">Departamento</a>
+            <a class="nav-item nav-link" id="nav-catalogo-tab" data-toggle="tab" href="#nav-catalogo" role="tab" aria-controls="nav-catalogo" aria-selected="false">Catálogo</a>
+          </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent2">
+
+                                <!---------------------Este es el tab boton NUEVO----------------> 
+          <div class="tab-pane fade" id="nav-nuevo" role="tabpanel" aria-labelledby="nav-nuevo-tab">
+
+
+	        <div class="card">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6">
+
+			             <div class="container-fliud">
+                             
+                             
+                                  <div class="row">
+                                      <div class="col">
+                                        <label for="" class="col-form-label">Código de Barras</label>
+                                      </div>
+                                      <div class="col-7">
+                                          <asp:TextBox ID="txtCodBarAgregar" runat="server" class="form-control"></asp:TextBox>
+                                      </div>
+                                  </div>
+                                <div class="row">
+                                      <div class="col">
+                                        <label for="" class="col-form-label">Nombre</label>
+                                      </div>
+                                      <div class="col-7">
+                                          <asp:TextBox ID="txtNombreAgregar" runat="server" class="form-control" ></asp:TextBox>
+                                      </div>
+
+                                  </div>
+                                  <div class="row">
+                                      <div class="col">
+                                        <label for="" class="col-form-label">Descripción</label>
+                                      </div>
+                                      <div class="col-7">
+                                          <asp:TextBox ID="txtDesAgregar" runat="server" class="form-control" ></asp:TextBox>
+                                      </div>
+
+                                  </div>
+                                  <div class="row">
+                                      <div class="col">
+                                        <label for="" class="col-form-label">Unidad de Medida</label>
+                                      </div>
+                                      <div class="col-7">
+                                        <select class="custom-select mr-sm-2" id="selectUMAgregar" runat="server">
+                                            <option selected>Seleccione...</option>
+                                            <option value="1">pza</option>
+                                            <option value="2">kg</option>
+                                        </select>
+                                       </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col">
+                                    <label for="" class="col-form-label">Precio de Venta</label>
+                                      </div>
+                                      <div class="col-7">
+                                          <asp:TextBox ID="txtPVAgregar" runat="server" class="form-control" ></asp:TextBox>
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                      <div  class="col">
+                                        <label for="" class="col-form-label">Departamento</label>
+                                      </div>
+                                      <div class="col-7">
+
+                                        <select class="custom-select mr-sm-2" id="selectDtoAgregar" runat="server">
+                                            <%--<option selected>Seleccione...</option>
+                                            <option value="1">Bebidas</option>
+                                            <option value="2">Enlatados</option>--%>
+                                        </select>
+                                       </div>
+                                  </div>
+
+			             </div>
+
+                        </div>
+
+                        <div class="col">
+
+                         <div class="container-fliud ">
+                             
+                             <div class="row">
+                             
+                                 <div class="col-8">
+                                 </div>
+                                 <div class="col">
+                                     <asp:Button ID="btnGuardarProducto" runat="server" Text="Guardar" class="btn btn-primary" OnClick="btnGuardarProducto_Click" />
+                                 </div>
+
+                             </div>                     
+                         </div>
+
+                        <!-------------------- Carga de Imagenes-------------------->
+                         <div class="container-fluid">
+                             <div class="card">
+
+                                <ul class="nav nav-pills mb-3" id="pills-tab-imagenes-nuevo" role="tablist">
+                                  <li class="nav-item">
+                                    <a class="nav-link active" id="pills-img1-tab-nuevo" data-toggle="pill" href="#pills-img1" role="tab" aria-controls="pills-img1" aria-selected="true">Imagen 1</a>
+                                  </li>
+                                  <li class="nav-item">
+                                    <a class="nav-link" id="pills-img2-tab-nuevo" data-toggle="pill" href="#pills-img2" role="tab" aria-controls="pills-img2" aria-selected="false">Imagen 2</a>
+                                  </li>
+                                  <li class="nav-item">
+                                    <a class="nav-link" id="pills-img3-tab-nuevo" data-toggle="pill" href="#pills-img3" role="tab" aria-controls="pills-img3" aria-selected="false">Imagen 3</a>
+                                  </li>
+                                </ul>
+                                <div class="tab-content" id="pills-tabContent-nuevo">
+                                    <!-------------------- Imagen 1-------------------->
+                                  <div class="tab-pane fade show active" id="pills-img1-nuevo" role="tabpanel" aria-labelledby="pills-img1-tab">
+
+                                      <div class="m-3 p-2">
+                              
+                                         <div class="form-group row">
+                                             <span class="col-form-label">Seleccionar Archivo : </span>
+                                         </div>
+                                         <div class="form-group row">
+                                             <asp:FileUpload ID="img1Agregar" runat="server" class="col-sm-6" />
+                                         </div>
+                                         <div class="form-group row">
+                                             <asp:Button ID="btnUpload1" runat="server" class="btn btn-warning" Text="Aceptar" OnClick="btnUpload_Click" />
+                                         </div>
+                     
+                                         <div>
+                                             <asp:Label ID="lblTimeStarts" runat="server" class="col-form-label" Text="File Upload Starts"></asp:Label>
+
+                                         </div>
+                                         <div class="form-group row">
+                                             <asp:Button ID="btnGetUploadedFile" runat="server" class="btn btn-warning" Text="Aceptar" />
+                                         </div>
+                                         <div class="form-group row">
+                         
+                                         </div>
+
+                                       </div>
+                              
+
+                                  </div>
+                                    <!-------------------- Imagen 2-------------------->
+                                  <div class="tab-pane fade" id="pills-img2-nuevo" role="tabpanel" aria-labelledby="pills-img2-tab">
+
+                                      <div class="m-3 p-2">
+                              
+                                         <div class="form-group row">
+                                             <span class="col-form-label">Seleccionar Archivo : </span>
+                                         </div>
+                                         <div class="form-group row">
+                                             <asp:FileUpload ID="FileUpload2" runat="server" class="col-sm-6" />
+                                         </div>
+                                         <div class="form-group row">
+                                             <asp:Button ID="Button1" runat="server" class="btn btn-warning" Text="Aceptar" OnClick="btnUpload_Click" />
+                                         </div>
+                     
+                                         <div>
+                                             <asp:Label ID="Label1" runat="server" class="col-form-label" Text="File Upload Starts"></asp:Label>
+
+                                         </div>
+                                         <div class="form-group row">
+                                             <asp:Button ID="Button2" runat="server" class="btn btn-warning" Text="Aceptar" />
+                                         </div>
+                                         <div class="form-group row">
+                         
+                                         </div>
+
+                                       </div>
+
+
+                                  </div>
+                                    <!-------------------- Imagen 3-------------------->
+                                  <div class="tab-pane fade" id="pills-img3-nuevo" role="tabpanel" aria-labelledby="pills-img3-tab">
+
+                                      <div class="m-3 p-2">
+                              
+                                         <div class="form-group row">
+                                             <span class="col-form-label">Seleccionar Archivo : </span>
+                                         </div>
+                                         <div class="form-group row">
+                                             <asp:FileUpload ID="FileUpload3" runat="server" class="col-sm-6" />
+                                         </div>
+                                         <div class="form-group row">
+                                             <asp:Button ID="Button3" runat="server" class="btn btn-warning" Text="Aceptar" OnClick="btnUpload_Click" />
+                                         </div>
+                     
+                                         <div>
+                                             <asp:Label ID="Label2" runat="server" class="col-form-label" Text="File Upload Starts"></asp:Label>
+
+                                         </div>
+                                         <div class="form-group row">
+                                             <asp:Button ID="Button4" runat="server" class="btn btn-warning" Text="Aceptar" />
+                                         </div>
+                                         <div class="form-group row">
+                         
+                                         </div>
+
+                                       </div>
+
+                                  </div>
+                                </div>
+
+                             </div>
+
+                         </div>
+                        </div>
+                    </div>
+                </div>
+
+		    </div>
+
+          </div>
+
+                                <!---------------------Este es el tab boton MODIFICAR----------------> 
+          <div class="tab-pane fade show active " id="nav-modificar" role="tabpanel" aria-labelledby="nav-modificar-tab">
+
+              <div class="card">
+                
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6">
+
+			             <div class="container-fliud">
+                             
+                             
+                                  <div class="row">
+                                      <div class="col-5">
+                                        <label for="" class="col-form-label">Código de Barras</label>
+                                      </div>
+                                      <div class="col-4">
+                                          <asp:TextBox ID="txtCodBarModificar" runat="server" class="form-control"></asp:TextBox>
+                                      </div>
+                                      <div class="col">
+                                          <asp:Button ID="btnBuscarModificar" runat="server" Text="Buscar" class="btn btn-primary" OnClick="btnBuscarModificar_Click"/>
+                                      </div>
+
+                                  </div>
+                                  <div class="row">
+                                      <div class="col">
+                                        <label for="" class="col-form-label">Nombre</label>
+                                      </div>
+                                      <div class="col-7">
+                                          <asp:TextBox ID="txtNombreModificar" runat="server"  class="form-control" ></asp:TextBox>
+                                      </div>
+
+                                  </div>
+                                  <div class="row">
+                                      <div class="col">
+                                        <label for="" class="col-form-label">Descripción</label>
+                                      </div>
+                                      <div class="col-7">
+                                          <asp:TextBox ID="txtDescModificar" runat="server"  class="form-control" ></asp:TextBox>
+                                      </div>
+
+                                  </div>
+                                  <div class="row">
+                                      <div class="col">
+                                        <label for="" class="col-form-label">Unidad de Medida</label>
+                                      </div>
+                                      <div class="col-7">
+                                        <select class="custom-select mr-sm-2" id="selectUMModificar" runat="server">
+                                            <option selected>Seleccione...</option>
+                                            <option value="1">pza</option>
+                                            <option value="2">kg</option>
+                                        </select>
+                                       </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col">
+                                    <label for="" class="col-form-label">Precio de Venta</label>
+                                      </div>
+                                      <div class="col-7">
+                                          <asp:TextBox ID="txtPreVenModificar" runat="server" class="form-control"></asp:TextBox>
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                      <div  class="col">
+                                        <label for="" class="col-form-label">Departamento</label>
+                                      </div>
+                                      <div class="col-7">
+                                        <select class="custom-select mr-sm-2" id="selectDtoModificar" runat="server">
+                                            
+                                        </select>
+                                       </div>
+                                  </div>
+
+
+			             </div>
+
+                        </div>
+
+                        <div class="col">
+
+                         <div class="container-fliud ">
+                             
+                             <div class="row">
+                             
+                                 <div class="col-8">
+                                 </div>
+                                 <div class="col">
+                                     <asp:Button ID="btnGuardarModificar" runat="server" Text="Guardar" class="btn btn-primary" />
+                                 </div>
+
+                             </div>                     
+                         </div>
+
+                        <!-------------------- Carga de Imagenes-------------------->
+                         <div class="container-fluid">
+                             <div class="card">
+
+                                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                  <li class="nav-item">
+                                    <a class="nav-link active" id="pills-img1-tab" data-toggle="pill" href="#pills-img1" role="tab" aria-controls="pills-img1" aria-selected="true">Imagen 1</a>
+                                  </li>
+                                  <li class="nav-item">
+                                    <a class="nav-link" id="pills-img2-tab" data-toggle="pill" href="#pills-img2" role="tab" aria-controls="pills-img2" aria-selected="false">Imagen 2</a>
+                                  </li>
+                                  <li class="nav-item">
+                                    <a class="nav-link" id="pills-img3-tab" data-toggle="pill" href="#pills-img3" role="tab" aria-controls="pills-img3" aria-selected="false">Imagen 3</a>
+                                  </li>
+                                </ul>
+                                <div class="tab-content" id="pills-tabContent-modificar">
+                                    <!-------------------- Imagen 1-------------------->
+                                  <div class="tab-pane fade show active" id="pills-img1-modificar" role="tabpanel" aria-labelledby="pills-img1-tab">
+
+                                      <div class="m-3 p-2">
+                              
+                                         <div class="form-group row">
+                                             <span class="col-form-label">Seleccionar Archivo : </span>
+                                         </div>
+                                         <div class="form-group row">
+                                             <asp:FileUpload ID="FileUpload4" runat="server" class="col-sm-6" />
+                                         </div>
+                                         <div class="form-group row">
+                                             <asp:Button ID="Button5" runat="server" class="btn btn-warning" Text="Aceptar" OnClick="btnUpload_Click" />
+                                         </div>
+                     
+                                         <div>
+                                             <asp:Label ID="Label3" runat="server" class="col-form-label" Text="File Upload Starts"></asp:Label>
+
+                                         </div>
+                                         <div class="form-group row">
+                                             <asp:Button ID="Button6" runat="server" class="btn btn-warning" Text="Aceptar" />
+                                         </div>
+                                         <div class="form-group row">
+                         
+                                         </div>
+
+                                       </div>
+                              
+
+                                  </div>
+                                    <!-------------------- Imagen 2-------------------->
+                                  <div class="tab-pane fade" id="pills-img2-modificar" role="tabpanel" aria-labelledby="pills-img2-tab">
+
+                                      <div class="m-3 p-2">
+                              
+                                         <div class="form-group row">
+                                             <span class="col-form-label">Seleccionar Archivo : </span>
+                                         </div>
+                                         <div class="form-group row">
+                                             <asp:FileUpload ID="FileUpload5" runat="server" class="col-sm-6" />
+                                         </div>
+                                         <div class="form-group row">
+                                             <asp:Button ID="Button7" runat="server" class="btn btn-warning" Text="Aceptar" OnClick="btnUpload_Click" />
+                                         </div>
+                     
+                                         <div>
+                                             <asp:Label ID="Label4" runat="server" class="col-form-label" Text="File Upload Starts"></asp:Label>
+
+                                         </div>
+                                         <div class="form-group row">
+                                             <asp:Button ID="Button8" runat="server" class="btn btn-warning" Text="Aceptar" />
+                                         </div>
+                                         <div class="form-group row">
+                         
+                                         </div>
+
+                                       </div>
+
+
+                                  </div>
+                                    <!-------------------- Imagen 3-------------------->
+                                  <div class="tab-pane fade" id="pills-img3-modificar" role="tabpanel" aria-labelledby="pills-img3-tab">
+
+                                      <div class="m-3 p-2">
+                              
+                                         <div class="form-group row">
+                                             <span class="col-form-label">Seleccionar Archivo : </span>
+                                         </div>
+                                         <div class="form-group row">
+                                             <asp:FileUpload ID="FileUpload6" runat="server" class="col-sm-6" />
+                                         </div>
+                                         <div class="form-group row">
+                                             <asp:Button ID="Button9" runat="server" class="btn btn-warning" Text="Aceptar" OnClick="btnUpload_Click" />
+                                         </div>
+                     
+                                         <div>
+                                             <asp:Label ID="Label5" runat="server" class="col-form-label" Text="File Upload Starts"></asp:Label>
+
+                                         </div>
+                                         <div class="form-group row">
+                                             <asp:Button ID="Button10" runat="server" class="btn btn-warning" Text="Aceptar" />
+                                         </div>
+                                         <div class="form-group row">
+                         
+                                         </div>
+
+                                       </div>
+
+                                  </div>
+                                </div>
+
+                             </div>
+
+                         </div>
+                        </div>
+                    </div>
+                </div>
+
+
+              </div>
+
+          </div>
+
+                                <!---------------------Este es el tab boton ELIMINAR----------------> 
+          <div class="tab-pane fade" id="nav-eliminar" role="tabpanel" aria-labelledby="nav-eliminar-tab">
+
+              <div class="card">
+                
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6">
+
+			             <div class="container-fliud">
+                             
+                             
+                                  <div class="row">
+                                      <div class="col">
+                                        <label for="" class="col-form-label">Código de Barras</label>
+                                      </div>
+                                      <div class="col-7">
+                                          <asp:TextBox ID="txtCodBarEliminar" runat="server" class="form-control"></asp:TextBox>
+                                      </div>
+
+                                  </div>
+                                  <div class="row">
+                                      <div class="col">
+                                        <label for="" class="col-form-label">Descripción</label>
+                                      </div>
+                                      <div class="col-7">
+                                          <asp:TextBox ID="txtDescEliminar" runat="server" class="form-control"></asp:TextBox>
+                                      </div>
+
+                                  </div>
+                                  <div class="row">
+                                      <div class="col">
+                                        <label for="" class="col-form-label">Unidad de Medida</label>
+                                      </div>
+                                      <div class="col-7">
+                                        <select class="custom-select mr-sm-2" id="">
+                                            <option selected>Seleccione...</option>
+                                            <option value="1">pza</option>
+                                            <option value="2">kg</option>
+                                        </select>
+                                       </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col">
+                                    <label for="" class="col-form-label">Precio de Venta</label>
+                                      </div>
+                                      <div class="col-7">
+                                          <asp:TextBox ID="txtPreVenEliminar" runat="server" class="form-control"></asp:TextBox>
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                      <div  class="col">
+                                        <label for="" class="col-form-label">Departamento</label>
+                                      </div>
+                                      <div class="col-7">
+                                        <select class="custom-select mr-sm-2" id="">
+                                            <option selected>Seleccione...</option>
+                                            <option value="1">Bebidas</option>
+                                            <option value="2">Enlatados</option>
+                                        </select>
+                                       </div>
+                                  </div>
+
+
+			             </div>
+
+                        </div>
+
+                        <div class="col">
+
+                         <div class="container-fluid">
+                             <div class="row">
+                             
+                                 <div class="col-sm-4">
+                                     <asp:Button ID="btnBuscarEliminar" runat="server" Text="Buscar" class="btn btn-primary" />
+                                 </div>
+                                 <div class="col-sm-4">
+                                     <asp:Button ID="btnEliminarEliminar" runat="server" Text="Eliminar" class="btn btn-danger"/>
+                                 </div>
+
+                             </div>
+                     
+                         </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+              </div>
+
+
+          </div>
+
+                                <!---------------------Este es el tab boton DEPARTAMENTO----------------> 
+          <div class="tab-pane fade" id="nav-departamento" role="tabpanel" aria-labelledby="nav-departamento-tab">
+
+              <div class="card">
+
+                  <div class="container">
+                      <div class="row">
+                          <div class="col">
+                              <asp:Label ID="lblNomDept" runat="server" Text="Nombre del Departamento"></asp:Label>
+                          </div>
+                          <div class="col-5">
+                              <asp:TextBox ID="txtNomDept" runat="server" CssClass="form-control"></asp:TextBox>
+                          </div>
+                          <div class="col">
+                              <asp:Button runat="server" class="btn btn-success" Text="Agregar" ID="btnAgregarDep" OnClick="btnAgregarDep_Click"/>
+                          </div>
+                          <div class="col">
+                              <asp:Button runat="server" class="btn btn-dark" Text="Limpiar"/>
+                          </div>
+                      </div>
+                      <div class="row"><br /></div>
+                      <div class="row">
+                          <div class="col"></div>
+                          <div class="col-5"></div>
+                          <div class="col"></div>
+                          <div class="col">
+                              <asp:Button runat="server" class="btn btn-danger" Text="Cambiar Estado" ID="btnStatusDepto"/>
+                          </div>
+                      </div>
+                      <div class="row"><br /></div>
+                      <div class="row">
+                          <div class="container-fluid">
+                            <asp:GridView ID="listaDepto" runat="server"></asp:GridView>
+                          </div>
+
+                      </div>
+
+                  </div>
+
+              </div>
+
+
+          </div>
+
+                                <!---------------------Este es el tab boton CATÁLOGO----------------> 
+          <div class="tab-pane fade" id="nav-catalogo" role="tabpanel" aria-labelledby="nav-catalogo-tab">
+              <div class="card">
+
+                  <div class="container">
+
+                      <div class="row">
+                          <div class="col-9">
+                              <asp:GridView ID="GridViewCatalogo" runat="server"></asp:GridView>
+                          </div>
+                          <div class="col">
+                              <div class="container-fluid">
+                                  <div class="row">
+                                      <asp:Button ID="btnModificarCatalogo" runat="server" Text="Modificar" class="btn btn-warning"/>
+                                  </div>
+                                  <div class="row">
+                                      <br />
+                                  </div>
+                                  <div class="row">
+                                      <asp:Button ID="btnEliminarCatalogo" runat="server" Text="Eliminar" class="btn btn-danger"/>
+                                  </div>
+                              </div>
+                          </div>
+
+
+                      </div>
+
+                  </div>
+
+              </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js"></script>
+    
+      </form>
+    
+  </body>
+</html>

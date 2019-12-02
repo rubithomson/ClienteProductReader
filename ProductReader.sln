@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29403.142
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ProductReader", "ProductReader\", "{25406506-7FEA-461C-8209-E3F05053854F}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.7.2"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_53370"
+		Debug.AspNetCompiler.PhysicalPath = "ProductReader\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53370\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_53370"
+		Release.AspNetCompiler.PhysicalPath = "ProductReader\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53370\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "53370"
+		SlnRelativePath = "ProductReader\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{25406506-7FEA-461C-8209-E3F05053854F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25406506-7FEA-461C-8209-E3F05053854F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {05B1E94A-659D-489F-AAF1-FBE5E12F0BDF}
+	EndGlobalSection
+EndGlobal

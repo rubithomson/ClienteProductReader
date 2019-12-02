@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="3b77a3aa-39aa-4c60-9501-1c0993ddd014" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://servicewfc.azurewebsites.net/Service1.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Service14.xsd" MetadataType="Schema" ID="28d41fff-8a78-4e4c-b891-9acd7231af9a" SourceId="1" SourceUrl="https://servicewfc.azurewebsites.net/Service1.svc?xsd=xsd4" />
+    <MetadataFile FileName="Service1.xsd" MetadataType="Schema" ID="9051b132-324c-46bf-a265-8751d49407c7" SourceId="1" SourceUrl="https://servicewfc.azurewebsites.net/Service1.svc?xsd=xsd2" />
+    <MetadataFile FileName="Service11.xsd" MetadataType="Schema" ID="6fd0baa5-ffe9-4bff-9257-cda8db88ef05" SourceId="1" SourceUrl="https://servicewfc.azurewebsites.net/Service1.svc?xsd=xsd3" />
+    <MetadataFile FileName="Service12.xsd" MetadataType="Schema" ID="42f828ba-4baf-46a8-85fe-41c5fe36666b" SourceId="1" SourceUrl="https://servicewfc.azurewebsites.net/Service1.svc?xsd=xsd0" />
+    <MetadataFile FileName="Service13.xsd" MetadataType="Schema" ID="32b7f432-3580-41c0-809c-2361a71cb10b" SourceId="1" SourceUrl="https://servicewfc.azurewebsites.net/Service1.svc?xsd=xsd1" />
+    <MetadataFile FileName="Service1.disco" MetadataType="Disco" ID="d859a902-1831-4042-b187-2539f246e384" SourceId="1" SourceUrl="https://servicewfc.azurewebsites.net/Service1.svc?disco" />
+    <MetadataFile FileName="Service1.wsdl" MetadataType="Wsdl" ID="f7f0519c-5c2d-474c-bb70-3c255d21fad0" SourceId="1" SourceUrl="https://servicewfc.azurewebsites.net/Service1.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
