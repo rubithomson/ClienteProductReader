@@ -13,10 +13,17 @@ public partial class MasterPage : System.Web.UI.MasterPage
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
+        {
             actualizarGrid();
-
-        if (!IsPostBack)
+            actualizarGridCatalogo();
             actualizarSelectDto();
+            iniciarCamposModificar();
+            iniciarCamposEliminar();
+            iniciarCamposKiosko();
+        }
+            
+
+
     }
 
     
@@ -36,6 +43,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
             selectDtoAgregar.Items.Add(n);
             selectDtoModificar.Items.Add(n);
+            selectDtoEliminar.Items.Add(n);
+            selectDtoCKiosko.Items.Add(n);
 
         }
     }
@@ -80,15 +89,51 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
 
 //------------ INICIAR TAB MODIFICAR PRODUCTO--------------------------
+    public void iniciarCamposModificar()
+    {
+        txtCodBarModificar.Text = "";
+        txtCodBarModificar.Enabled = true;
+        txtNombreModificar.Text = "";
+        txtNombreModificar.Enabled = false;
+        txtDescModificar.Text = "";
+        txtDescModificar.Enabled = false;
+        selectUMModificar.SelectedIndex = 0;
+        selectUMModificar.Disabled = true;
+        txtPreVenModificar.Text = "";
+        txtPreVenModificar.Enabled = false;
+        selectDtoModificar.SelectedIndex = 0;
+        selectDtoModificar.Disabled = true;
 
+    }
+    public void activarCamposModificar()
+    {
+        txtCodBarModificar.Enabled = false;
+        txtNombreModificar.Text = "";
+        txtNombreModificar.Enabled = true;
+        txtDescModificar.Text = "";
+        txtDescModificar.Enabled = true;
+        selectUMModificar.SelectedIndex = 0;
+        selectUMModificar.Disabled = false;
+        txtPreVenModificar.Text = "";
+        txtPreVenModificar.Enabled = true;
+        selectDtoModificar.SelectedIndex = 0;
+        selectDtoModificar.Disabled = false;
+
+    }
+    protected void btnLimpiarModificar_Click(object sender, EventArgs e)
+    {
+        iniciarCamposModificar();
+    }
     protected void btnBuscarModificar_Click(object sender, EventArgs e)
     {
+        
         string codbar = "";
         codbar = txtCodBarModificar.Text;
         if (codbar.Length > 0)
         {
             try
             {
+                activarCamposModificar();
                 string producto = Cliente.BuscarProducto(codbar);
                 string[] separadas;
                 separadas = producto.Split('¬');
@@ -106,20 +151,140 @@ public partial class MasterPage : System.Web.UI.MasterPage
             }
             catch(Exception ex)
             {
+                iniciarCamposModificar();
                 string error = "No existe el producto";
                 txtNombreModificar.Text = error;
-                txtDescModificar.Text = "";
-                selectUMModificar.SelectedIndex = 0;
-                txtPreVenModificar.Text = "";
-                selectDtoModificar.SelectedIndex = 0;
+                
             }
-            
-
 
         }
     }
 
- //------------ TERMINAR TAB MODIFICAR PRODUCTO--------------------------
+    protected void btnGuardarModificar_Click(object sender, EventArgs e)
+    {
+        string codbar = txtCodBarModificar.Text;
+        string nombre = txtNombreModificar.Text;
+        string descripcion = txtDescModificar.Text;
+        string valor = selectUMModificar.Value;
+        string um = ""; int b = 3;
+        //if (valor == "0") txtCodBarAgregar.Text = um;
+        if (valor == "1") um = "pza";
+        else if (valor == "2") um = "kg";
+        else b = 0;
+        string spv = txtPreVenModificar.Text;
+        float pv = float.Parse(spv);
+        //string dep = selectDtoAgregar.SelectedIndex;
+        int nDep = selectDtoModificar.SelectedIndex;
+
+        Cliente.EnviaModificacion(codbar, nombre, descripcion, um, pv, "Activo", nDep);
+        iniciarCamposModificar();
+        //if (Cliente(codbar, nombre, descripcion, um, pv, "activo", nDep) && b > 0)
+        //{
+        //    //Console.WriteLine("True");
+        //    //Console.ReadKey();
+        //    txtCodBarModificar.Text = "";
+        //    txtNombreModificar.Text = "";
+        //    txtDescModificar.Text = "";
+        //    selectUMModificar.SelectedIndex = 0;
+        //    txtPreVenModificar.Text = "";
+        //    selectDtoModificar.SelectedIndex = 0;
+        //}
+    }
+
+
+
+    //------------ TERMINAR TAB MODIFICAR PRODUCTO--------------------------
+
+
+
+
+
+    //------------ INICIAR TAB ELIMINAR PRODUCTO-----
+    bool existeMP = true;
+
+    public void iniciarCamposEliminar()
+    {
+        txtCodBarEliminar.Text = "";
+        txtCodBarEliminar.Enabled = true;
+        txtNombreEliminar.Text = "";
+        txtNombreEliminar.Enabled = false;
+        txtDescEliminar.Text = "";
+        txtDescEliminar.Enabled = false;
+        selectUMEliminar.SelectedIndex = 0;
+        selectUMEliminar.Disabled = true;
+        txtPreVenEliminar.Text = "";
+        txtPreVenEliminar.Enabled = false;
+        selectDtoEliminar.SelectedIndex = 0;
+        selectDtoEliminar.Disabled = true;
+
+    }
+    protected void btnBuscarEliminar_Click(object sender, EventArgs e)
+    {
+        
+        string codbar = "";
+        codbar = txtCodBarEliminar.Text;
+        if (codbar.Length > 0)
+        {
+            try
+            {
+                txtCodBarEliminar.Enabled = false;
+                existeMP = true;
+                string producto = Cliente.BuscarProducto(codbar);
+                string[] separadas;
+                separadas = producto.Split('¬');
+
+                txtNombreEliminar.Text = separadas[1];
+                txtDescEliminar.Text = separadas[2];
+
+                if (separadas[3] == "pza")
+                    selectUMEliminar.SelectedIndex = 1;
+                else selectUMEliminar.SelectedIndex = 2;
+
+                txtPreVenEliminar.Text = separadas[4];
+
+                selectDtoEliminar.SelectedIndex = Int32.Parse(separadas[6]);
+            }
+            catch (Exception ex)
+            {
+                iniciarCamposEliminar();
+                existeMP = false;
+                string error = "No existe el producto";
+                txtNombreEliminar.Text = error;
+            }
+
+
+
+        }
+    }
+    protected void btnEliminarEliminar_Click(object sender, EventArgs e)
+    {
+        if (existeMP == true)
+        {
+            string codbar = "";
+            codbar = txtCodBarEliminar.Text;
+            Cliente.BajaProducto(codbar);
+
+            txtCodBarEliminar.Text = "";
+            txtNombreEliminar.Text = "";
+            txtDescEliminar.Text = "";
+            selectUMEliminar.SelectedIndex = 0;
+            txtPreVenEliminar.Text = "";
+            selectDtoEliminar.SelectedIndex = 0;
+        }
+
+
+    }
+   
+
+
+    //------------ TERMINAR TAB ELIMINAR PRODUCTO--------------------------
+
+
+
+
+
+
+
 
 
     //------------ INICIA TAB DEPARTAMENTOS--------------------------
@@ -145,10 +310,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             }
                    
     }
-    protected void btnGuardarModificar_Click(object sender, EventArgs e)
-    {
-
-    }
+    
 
 
     // ----------- TERMINA TAB DEPARTAMENTOS ------------------------
@@ -173,7 +335,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
                     fileToSend[count++] = Convert.ToByte(stream.ReadByte());
                 }
             Stream stream1 = new MemoryStream(fileToSend);
-            Cliente.SubirImagen(stream1);
+            //Cliente.SubirImagen(stream1);
 
             }
 
@@ -229,14 +391,81 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
     {
+        
+    }
+
+    private void actualizarGridCatalogo()
+    {
+
+        var registro = Cliente.ListarDepartamentos();
+        gridCatalogo.DataSource = registro;
+        gridCatalogo.DataBind();
+
 
     }
 
 
+    //--------------------------------------------------------------------------------------------------------
+    //----------------- KIOSKO BUSCAR PRODUCTO ---------------------------------------------------------------
+    public void iniciarCamposKiosko()
+    {
+        lblNomProdKiosko.Text = "Escanee su producto";
+        lblDescKiosko.Text = "Luego pulse Buscar";
+        lblUMKiosko.Text = "U.M.";
+        lblPrecioKiosko.Text = "Precio ";
+        lblDepKiosko.Text = "S/N";
+    }
+    protected void btnBuscarProdKiosko_Click(object sender, EventArgs e)
+    {
+        string codbar = "";
+        codbar = txtCodBarProdKiosko.Text;
+        if (codbar.Length > 0)
+        {
+            try
+            {
+                activarCamposModificar();
+                string producto = Cliente.BuscarProducto(codbar);
+                string[] separadas;
+                separadas = producto.Split('¬');
 
+                lblNomProdKiosko.Text = separadas[1];
+                lblDescKiosko.Text = separadas[2];
+                lblUMKiosko.Text = separadas[3];
+                lblPrecioKiosko.Text = separadas[4]+" ";
 
+                selectDtoModificar.SelectedIndex = Int32.Parse(separadas[6]);
+                string dep = selectDtoModificar.Value;
+                lblDepKiosko.Text = dep;
+            }
+            catch (Exception ex)
+            {
+                iniciarCamposKiosko();
+                string error = "No existe el producto";
+                lblNomProdKiosko.Text = error;
 
+            }
+            
+        }
+    }
 
+    //--------------------------------------------------------------------------------------------------------
+    //----------------- KIOSKO CATALOGO PRODUCTO ---------------------------------------------------------------
+    public int eligeDep()
+    {
+        int nDep = selectDtoCKiosko.SelectedIndex;
+        return nDep;
+    }
+    protected void btnBuscarDtoCKiosko_Click(object sender, EventArgs e)
+    {
+       
+        int nDep = eligeDep();
+        var productos = Cliente.ListarProductos();
+        foreach (var producto in productos)
+        {
 
-
+            nDep = eligeDep();
+            lblNomProdCKiosko.
+        
+        }
+    }
 }

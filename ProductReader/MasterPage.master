@@ -33,8 +33,8 @@
 
     <div class="tab-content" id="nav-tabContent1">
       <!---------------------Este es el tab KIOSKO---------------->  
-      <div class="tab-pane fade" id="nav-kiosko" role="tabpanel" aria-labelledby="nav-kiosko-tab">
-
+      <div class="tab-pane fade  show active" id="nav-kiosko" role="tabpanel" aria-labelledby="nav-kiosko-tab">
+          
 	    <div class="container">
 
             <nav>
@@ -45,12 +45,12 @@
             </nav>
             <div class="tab-content" id="nav-tabContent">
               <!------------tab Boton BUSCAR------------>
-              <div class="tab-pane fade show active" id="nav-buscar" role="tabpanel" aria-labelledby="nav-buscar-tab">
+              <div class="tab-pane fade" id="nav-buscar" role="tabpanel" aria-labelledby="nav-buscar-tab">
 
                   <br />
                       <div class="form-inline">
-                            <input type="text" class="form-control" placeholder="Buscar"/>
-                            <button type="submit" class="btn btn-primary">Buscar</button>
+                            <asp:TextBox class="form-control" placeholder="Buscar" runat="server" id="txtCodBarProdKiosko"></asp:TextBox>
+                            <asp:Button class="btn btn-primary" runat="server" id="btnBuscarProdKiosko" text="Buscar" OnClick="btnBuscarProdKiosko_Click" />
                       </div>
 
 		        <div class="card">
@@ -76,9 +76,26 @@
 					        </div>
 					        <div class="details col-md-6">
 
-                                <h6>Departamento</h6>
-						        <h3 class="product-title">NOMBRE DEL PRODUCTO</h3>
-						        <h4 class="price"><span>$180 </span>pza.</h4>
+                                
+						        <h5 class="product-title">
+                                    Departamento: 
+                                    <asp:Label ID="lblDepKiosko" runat="server" Text="S/N"></asp:Label>
+                                </h5>
+                                <h2 class="product-title">
+                                    <asp:Label ID="lblNomProdKiosko" runat="server" Text="Escanee su producto"></asp:Label>
+                                </h2>
+                                <h3 class="product-description">
+                                    <asp:Label ID="lblDescKiosko" runat="server" Text="Luego pulse Buscar"></asp:Label>
+                                </h3>
+						        <h4 class="price">
+                                    <span>
+                                        $
+                                        <asp:Label ID="lblPrecioKiosko" runat="server" Text="Precio "></asp:Label>
+                                    </span> 
+                                        
+                                    <asp:Label ID="lblUMKiosko" runat="server" Text="U.M"></asp:Label>
+                                        
+						        </h4>
 						
 					        </div>
 				        </div>
@@ -88,52 +105,64 @@
               </div>
 
               <!------------tab Boton CATÁLOGO------------>
-              <div class="tab-pane fade" id="btn-nav-catalogo" role="tabpanel" aria-labelledby="btn-nav-catalogo-tab">
+               
+              <div class="tab-pane fade show active" id="btn-nav-catalogo" role="tabpanel" aria-labelledby="btn-nav-catalogo-tab">
                   <br />
                       <div class="form-group">
-                        <select class="form-control" id="">
-                          <option>Departamento</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
+                        <select class="form-control" id="selectDtoCKiosko" runat="server">
+                          
                         </select>
+                          <asp:Button ID="btnBuscarDtoCKiosko" runat="server" Text="Filtrar" OnClick="btnBuscarDtoCKiosko_Click" />
                       </div>
                   <div class="card-group">
+                      
+                          
+                     <%-- <div class="card" style="width: 18rem;">
+                          <img src="..." class="card-img-top" alt="...">
+                          <div class="card-body">
+                                <h5 class="product-title">
+                                   
+                                    <asp:Label ID="lblNomProdCKiosko"  runat="server" Text="Nombre PRoducto"></asp:Label>
+                                </h5>
+                                <h4 class="price">
+                                   
+                                   <asp:Label ID="lblPrecioCKiosko" runat="server" Text="Precio"></asp:Label>
+                                        
+						        </h4>
+                              <h4 class="price">
+                                   
+                                   <asp:Label ID="lblUMCKiosko" runat="server" Text="UM"></asp:Label>
+                                        
+						        </h4>
+                          </div>
+                     </div>--%>
 
+                      
+
+                      <%ServiceReference1.Service1Client sc = new ServiceReference1.Service1Client();
+                              var productos = sc.ListarProductos();
+                              foreach(var s in productos) { %>
                       <div class="card" style="width: 18rem;">
                           <img src="..." class="card-img-top" alt="...">
                           <div class="card-body">
-                            <p class="product-title">
-                                NOMBRE DEL PRODUCTO
-                            </p>
-                            <p class="price">
-                                <span>$180 </span>pza.
-                            </p>
+                                <h5 class="product-title">
+                                   
+                                    <asp:Label class="" ID="Label6"  runat="server" Text="" ></asp:Label>
+                                </h5>
+                                <h4 class="price">
+                                   
+                                   <asp:Label ID="Label7" runat="server" Text="Precio"></asp:Label>
+                                        
+						        </h4>
+                              <h4 class="price">
+                                   
+                                   <asp:Label ID="Label8" runat="server" Text="UM"></asp:Label>
+                                        
+						        </h4>
                           </div>
                      </div>
-                      <div class="card" style="width: 18rem;">
-                          <img src="..." class="card-img-top" alt="...">
-                          <div class="card-body">
-                            <p class="product-title">
-                                NOMBRE DEL PRODUCTO
-                            </p>
-                            <p class="price">
-                                <span>$180 </span>pza.
-                            </p>
-                          </div>
-                     </div>
-                      <div class="card" style="width: 18rem;">
-                          <img src="..." class="card-img-top" alt="...">
-                          <div class="card-body">
-                            <p class="product-title">
-                                NOMBRE DEL PRODUCTO
-                            </p>
-                            <p class="price">
-                                <span>$180 </span>pza.
-                            </p>
-                          </div>
-                     </div>
+
+                     <% } %>
 
                       
                   </div>
@@ -374,7 +403,7 @@
           </div>
 
                                 <!---------------------Este es el tab boton MODIFICAR----------------> 
-          <div class="tab-pane fade show active " id="nav-modificar" role="tabpanel" aria-labelledby="nav-modificar-tab">
+          <div class="tab-pane fade " id="nav-modificar" role="tabpanel" aria-labelledby="nav-modificar-tab">
 
               <div class="card">
                 
@@ -457,12 +486,15 @@
                              
                              <div class="row">
                              
-                                 <div class="col-8">
+                                 <div class="col-6">
                                  </div>
                                  <div class="col">
-                                     <asp:Button ID="btnGuardarModificar" runat="server" Text="Guardar" class="btn btn-primary" />
+                                     <asp:Button ID="btnLimpiarModificar" runat="server" Text="Cancelar" class="btn btn-danger" OnClick="btnLimpiarModificar_Click" />
                                  </div>
-
+                                 <div class="col">
+                                     <asp:Button ID="btnGuardarModificar" runat="server" Text="Guardar" class="btn btn-primary" OnClick="btnGuardarModificar_Click" />
+                                 </div>
+                                 
                              </div>                     
                          </div>
 
@@ -586,7 +618,7 @@
           </div>
 
                                 <!---------------------Este es el tab boton ELIMINAR----------------> 
-          <div class="tab-pane fade" id="nav-eliminar" role="tabpanel" aria-labelledby="nav-eliminar-tab">
+          <div class="tab-pane fade " id="nav-eliminar" role="tabpanel" aria-labelledby="nav-eliminar-tab">
 
               <div class="card">
                 
@@ -608,6 +640,15 @@
                                   </div>
                                   <div class="row">
                                       <div class="col">
+                                        <label for="" class="col-form-label">Nombre</label>
+                                      </div>
+                                      <div class="col-7">
+                                          <asp:TextBox ID="txtNombreEliminar" runat="server" class="form-control"></asp:TextBox>
+                                      </div>
+
+                                  </div>
+                                  <div class="row">
+                                      <div class="col">
                                         <label for="" class="col-form-label">Descripción</label>
                                       </div>
                                       <div class="col-7">
@@ -620,7 +661,7 @@
                                         <label for="" class="col-form-label">Unidad de Medida</label>
                                       </div>
                                       <div class="col-7">
-                                        <select class="custom-select mr-sm-2" id="">
+                                        <select class="custom-select mr-sm-2" id="selectUMEliminar" runat="server">
                                             <option selected>Seleccione...</option>
                                             <option value="1">pza</option>
                                             <option value="2">kg</option>
@@ -640,10 +681,8 @@
                                         <label for="" class="col-form-label">Departamento</label>
                                       </div>
                                       <div class="col-7">
-                                        <select class="custom-select mr-sm-2" id="">
-                                            <option selected>Seleccione...</option>
-                                            <option value="1">Bebidas</option>
-                                            <option value="2">Enlatados</option>
+                                        <select class="custom-select mr-sm-2" id="selectDtoEliminar" runat="server">
+                                            
                                         </select>
                                        </div>
                                   </div>
@@ -659,10 +698,10 @@
                              <div class="row">
                              
                                  <div class="col-sm-4">
-                                     <asp:Button ID="btnBuscarEliminar" runat="server" Text="Buscar" class="btn btn-primary" />
+                                     <asp:Button ID="btnBuscarEliminar" runat="server" Text="Buscar" class="btn btn-primary" OnClick="btnBuscarEliminar_Click" />
                                  </div>
                                  <div class="col-sm-4">
-                                     <asp:Button ID="btnEliminarEliminar" runat="server" Text="Eliminar" class="btn btn-danger"/>
+                                     <asp:Button ID="btnEliminarEliminar" runat="server" Text="Eliminar" class="btn btn-danger" OnClick="btnEliminarEliminar_Click"/>
                                  </div>
 
                              </div>
@@ -731,7 +770,11 @@
 
                       <div class="row">
                           <div class="col-9">
-                              <asp:GridView ID="GridViewCatalogo" runat="server"></asp:GridView>
+                              <asp:GridView ID="gridCatalogo" runat="server">
+                                  <Columns>
+                                      <asp:CheckBoxField />
+                                  </Columns>
+                              </asp:GridView>
                           </div>
                           <div class="col">
                               <div class="container-fluid">

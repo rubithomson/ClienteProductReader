@@ -2,7 +2,6 @@
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="https://servicewfc.azurewebsites.net/Service1.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:import schemaLocation="https://servicewfc.azurewebsites.net/Service1.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/ProductReaderService" />
-  <xs:import schemaLocation="https://servicewfc.azurewebsites.net/Service1.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/Message" />
   <xs:element name="VerificarPrecio">
     <xs:complexType>
       <xs:sequence>
@@ -119,20 +118,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SubirImagen">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.microsoft.com/Message" name="input" type="q6:StreamBody" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SubirImagenResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SubirImagenResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="AgregarDepartamento">
     <xs:complexType>
       <xs:sequence>
@@ -168,21 +153,27 @@
   <xs:element name="ListarProductosResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/ProductReaderService" minOccurs="0" name="ListarProductosResult" nillable="true" type="q7:ArrayOfProductos" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/ProductReaderService" minOccurs="0" name="ListarProductosResult" nillable="true" type="q6:ArrayOfProductos" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="EnviaModificacion">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="id" type="xs:int" />
+        <xs:element minOccurs="0" name="codigo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="descripcion" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="unidadmedida" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="precio" type="xs:float" />
+        <xs:element minOccurs="0" name="status" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="depto" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="EnviaModificacionResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="EnviaModificacionResult" type="xs:int" />
+        <xs:element minOccurs="0" name="EnviaModificacionResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

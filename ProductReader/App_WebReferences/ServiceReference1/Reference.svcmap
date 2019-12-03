@@ -22,7 +22,6 @@
     <MetadataSource Address="https://servicewfc.azurewebsites.net/Service1.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="Service14.xsd" MetadataType="Schema" ID="28d41fff-8a78-4e4c-b891-9acd7231af9a" SourceId="1" SourceUrl="https://servicewfc.azurewebsites.net/Service1.svc?xsd=xsd4" />
     <MetadataFile FileName="Service1.xsd" MetadataType="Schema" ID="9051b132-324c-46bf-a265-8751d49407c7" SourceId="1" SourceUrl="https://servicewfc.azurewebsites.net/Service1.svc?xsd=xsd2" />
     <MetadataFile FileName="Service11.xsd" MetadataType="Schema" ID="6fd0baa5-ffe9-4bff-9257-cda8db88ef05" SourceId="1" SourceUrl="https://servicewfc.azurewebsites.net/Service1.svc?xsd=xsd3" />
     <MetadataFile FileName="Service12.xsd" MetadataType="Schema" ID="42f828ba-4baf-46a8-85fe-41c5fe36666b" SourceId="1" SourceUrl="https://servicewfc.azurewebsites.net/Service1.svc?xsd=xsd0" />
