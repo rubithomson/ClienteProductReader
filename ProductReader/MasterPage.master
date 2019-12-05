@@ -45,7 +45,7 @@
             </nav>
             <div class="tab-content" id="nav-tabContent">
               <!------------tab Boton BUSCAR------------>
-              <div class="tab-pane fade" id="nav-buscar" role="tabpanel" aria-labelledby="nav-buscar-tab">
+              <div class="tab-pane fade show active" id="nav-buscar" role="tabpanel" aria-labelledby="nav-buscar-tab">
 
                   <br />
                       <div class="form-inline">
@@ -106,7 +106,7 @@
 
               <!------------tab Boton CATÁLOGO------------>
                
-              <div class="tab-pane fade show active" id="btn-nav-catalogo" role="tabpanel" aria-labelledby="btn-nav-catalogo-tab">
+              <div class="tab-pane fade" id="btn-nav-catalogo" role="tabpanel" aria-labelledby="btn-nav-catalogo-tab">
                   <br />
                       <div class="form-group">
                         <select class="form-control" id="selectDtoCKiosko" runat="server">
@@ -115,86 +115,61 @@
                           <asp:Button ID="btnBuscarDtoCKiosko" runat="server" Text="Filtrar" OnClick="btnBuscarDtoCKiosko_Click" />
                       </div>
                   <div class="card-group">
-                      
-                          
-                     <%-- <div class="card" style="width: 18rem;">
-                          <img src="..." class="card-img-top" alt="...">
-                          <div class="card-body">
-                                <h5 class="product-title">
+                     
+                        <asp:Repeater ID="Repeater1" runat="server">
+                            <ItemTemplate>
+                              <div class="card-group">
+                                <div class="card" style="width: 18rem;">
+                                  <img src="..." class="card-img-top" alt="...">
+                                  <div class="card-body">
+                                        <h2 class="product-title">
+                                            <asp:Label class="" ID="lblCod_ProdCKiosko"  runat="server" Text='' ><%#Eval("codigo_producto") %></asp:Label>
+                                        </h2>
+                                        <h2 class="product-title">
                                    
-                                    <asp:Label ID="lblNomProdCKiosko"  runat="server" Text="Nombre PRoducto"></asp:Label>
-                                </h5>
-                                <h4 class="price">
+                                            <asp:Label class="" ID="lblNomProdCKiosko"  runat="server" Text='' ><%#Eval("nombre") %></asp:Label>
+                                        </h2>
+                                        <h5 class="product-title">
                                    
-                                   <asp:Label ID="lblPrecioCKiosko" runat="server" Text="Precio"></asp:Label>
-                                        
-						        </h4>
-                              <h4 class="price">
-                                   
-                                   <asp:Label ID="lblUMCKiosko" runat="server" Text="UM"></asp:Label>
-                                        
-						        </h4>
-                          </div>
-                     </div>--%>
-
-                      
-
-                      <%ServiceReference1.Service1Client sc = new ServiceReference1.Service1Client();
-                              var productos = sc.ListarProductos();
-                              foreach(var s in productos) { %>
-                      <div class="card" style="width: 18rem;">
-                          <img src="..." class="card-img-top" alt="...">
-                          <div class="card-body">
-                                <h5 class="product-title">
-                                   
-                                    <asp:Label class="" ID="Label6"  runat="server" Text="" ></asp:Label>
-                                </h5>
-                                <h4 class="price">
-                                   
-                                   <asp:Label ID="Label7" runat="server" Text="Precio"></asp:Label>
-                                        
-						        </h4>
-                              <h4 class="price">
-                                   
-                                   <asp:Label ID="Label8" runat="server" Text="UM"></asp:Label>
-                                        
-						        </h4>
-                          </div>
-                     </div>
-
-                     <% } %>
-
-                      
-                  </div>
-
+                                            <asp:Label class="" ID="lblDescCKiosko"  runat="server" Text='' ><%#Eval("descripcion") %></asp:Label>
+                                        </h5>
+                                        <h4 class="price">
+                                            <asp:Label ID="lblPreciocKiosko" runat="server" Text="Precio: $"><%#Eval("precio") %></asp:Label>
+						                </h4>
+                                        <h4 class="price">
+                                            <asp:Label ID="lblUMCKiosko" runat="server" Text=""><%#Eval("unidad_medida") %></asp:Label>
+                                        </h4>
+                                  </div>
+                                </div>
+                              </div>
+                            </ItemTemplate>
+                        </asp:Repeater>
 
               </div>
             </div>
 
-
-
-
-	    </div>
+            </div>
 
 
       </div>
 
+      </div>
         <!---------------------Este es el tab PRODUCTOS---------------->  
-      <div class="tab-pane fade show active" id="nav-productos" role="tabpanel" aria-labelledby="nav-productos-tab">
+      <div class="tab-pane fade" id="nav-productos" role="tabpanel" aria-labelledby="nav-productos-tab">
           
           <nav>
           <div class="nav nav-tabs" id="nav-tab2" role="tablist">
-            <a class="nav-item nav-link" id="nav-nuevo-tab" data-toggle="tab" href="#nav-nuevo" role="tab" aria-controls="nav-nuevo" aria-selected="true">Nuevo</a>
-            <a class="nav-item nav-link" id="nav-modificar-tab" data-toggle="tab" href="#nav-modificar" role="tab" aria-controls="nav-modificar" aria-selected="false">Modificar</a>
+            <a class="nav-item nav-link active" id="nav-nuevo-tab" data-toggle="tab" href="#nav-nuevo" role="tab" aria-controls="nav-nuevo" aria-selected="true">Nuevo</a>
+            <a class="nav-item nav-link " id="nav-modificar-tab" data-toggle="tab" href="#nav-modificar" role="tab" aria-controls="nav-modificar" aria-selected="false">Modificar</a>
             <a class="nav-item nav-link" id="nav-eliminar-tab" data-toggle="tab" href="#nav-eliminar" role="tab" aria-controls="nav-eliminar" aria-selected="false">Eliminar</a>
-            <a class="nav-item nav-link active" id="nav-departamento-tab" data-toggle="tab" href="#nav-departamento" role="tab" aria-controls="nav-departamento" aria-selected="false">Departamento</a>
+            <a class="nav-item nav-link " id="nav-departamento-tab" data-toggle="tab" href="#nav-departamento" role="tab" aria-controls="nav-departamento" aria-selected="false">Departamento</a>
             <a class="nav-item nav-link" id="nav-catalogo-tab" data-toggle="tab" href="#nav-catalogo" role="tab" aria-controls="nav-catalogo" aria-selected="false">Catálogo</a>
           </div>
         </nav>
         <div class="tab-content" id="nav-tabContent2">
 
                                 <!---------------------Este es el tab boton NUEVO----------------> 
-          <div class="tab-pane fade" id="nav-nuevo" role="tabpanel" aria-labelledby="nav-nuevo-tab">
+          <div class="tab-pane fade show active" id="nav-nuevo" role="tabpanel" aria-labelledby="nav-nuevo-tab">
 
 
 	        <div class="card">
@@ -801,6 +776,7 @@
 
 
       </div>
+    
     </div>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js"></script>

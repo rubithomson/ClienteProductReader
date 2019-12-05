@@ -20,6 +20,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
             iniciarCamposModificar();
             iniciarCamposEliminar();
             iniciarCamposKiosko();
+            llenarGridProductos();
+            llenarCatalogoCKiosko();
         }
             
 
@@ -178,17 +180,9 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
         Cliente.EnviaModificacion(codbar, nombre, descripcion, um, pv, "Activo", nDep);
         iniciarCamposModificar();
-        //if (Cliente(codbar, nombre, descripcion, um, pv, "activo", nDep) && b > 0)
-        //{
-        //    //Console.WriteLine("True");
-        //    //Console.ReadKey();
-        //    txtCodBarModificar.Text = "";
-        //    txtNombreModificar.Text = "";
-        //    txtDescModificar.Text = "";
-        //    selectUMModificar.SelectedIndex = 0;
-        //    txtPreVenModificar.Text = "";
-        //    selectDtoModificar.SelectedIndex = 0;
-        //}
+        llenarGridProductos();
+
+
     }
 
 
@@ -270,6 +264,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             selectUMEliminar.SelectedIndex = 0;
             txtPreVenEliminar.Text = "";
             selectDtoEliminar.SelectedIndex = 0;
+            llenarGridProductos();
         }
 
 
@@ -335,64 +330,14 @@ public partial class MasterPage : System.Web.UI.MasterPage
                     fileToSend[count++] = Convert.ToByte(stream.ReadByte());
                 }
             Stream stream1 = new MemoryStream(fileToSend);
-            //Cliente.SubirImagen(stream1);
 
             }
 
-            /*
-            //Check file is selected or not  System.ServiceModel.FaultException`1: 'A generic error occurred in GDI+.'
-            if (FileUpload1.HasFile)
-            {
-                System.Diagnostics.Stopwatch timer = new System.Diagnostics.Stopwatch();
-                timer.Start();
-                //To Service  
-                #region Upload Files  
-
-                string filename = FileUpload1.FileName;
-                byte[] filebyte = FileUpload1.FileBytes;
-
-                //Service refrence          
-                //ServiceReference.ServiceClient objAttachment = new ServiceReference.ServiceClient();
-                ServiceReference1.Service1Client objAttachment = new ServiceReference1.Service1Client();
-
-
-                //pass the file byte to service  
-                objAttachment.UploadToTempFolder(filebyte, filename);
-                #endregion
-                timer.Stop();
-                lblTimeStarts.Text = "File upload takes >>>" + Convert.ToString((TimeSpan.FromMilliseconds(timer.ElapsedMilliseconds).Milliseconds)) + " milliseconds. <br>";
-
-                writetheFileNameInText(filename, "output");
-                //bindUploadFile(DataList1, "output");
-            }
-            */
         }
 
 
 
-    private void writetheFileNameInText(string fileName, string outputFileName)
-    {
 
-        using (StreamWriter w = File.AppendText(Server.MapPath(@"~\App_Data\" + outputFileName + ".txt")))
-        {
-            w.WriteLine(fileName);
-        }
-    }
-    /*
-    private void bindUploadFile(DataList dl, string outputFileName)
-    {
-        List<string> lstfileName = new List<string>();
-        lstfileName = gettheFileNamefromText(outputFileName);
-
-        dl.DataSource = lstfileName;
-        dl.DataBind();
-
-    } */
-
-    protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        
-    }
 
     private void actualizarGridCatalogo()
     {
@@ -423,7 +368,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         {
             try
             {
-                activarCamposModificar();
+                
                 string producto = Cliente.BuscarProducto(codbar);
                 string[] separadas;
                 separadas = producto.Split('¬');
@@ -442,6 +387,9 @@ public partial class MasterPage : System.Web.UI.MasterPage
                 iniciarCamposKiosko();
                 string error = "No existe el producto";
                 lblNomProdKiosko.Text = error;
+                lblDescKiosko.Text = "";
+                lblPrecioKiosko.Text = "";
+                lblUMKiosko.Text = "";
 
             }
             
@@ -455,17 +403,39 @@ public partial class MasterPage : System.Web.UI.MasterPage
         int nDep = selectDtoCKiosko.SelectedIndex;
         return nDep;
     }
+    public void llenarCatalogoCKiosko()
+    {
+        var productos = Cliente.ListarProductos();
+
+        Repeater1.DataSource = productos;
+        Repeater1.DataBind();
+    }
+    
     protected void btnBuscarDtoCKiosko_Click(object sender, EventArgs e)
     {
        
         int nDep = eligeDep();
         var productos = Cliente.ListarProductos();
-        foreach (var producto in productos)
+        var prodver=productos;
+        foreach(var nx in productos)
         {
-
-            nDep = eligeDep();
-            lblNomProdCKiosko.
-        
+            
         }
+        
+        Repeater1.DataSource = productos;
+        Repeater1.DataBind();
+        
+    }
+
+
+    //_------------------------------------PRODUCTOS CATALOGO ----------------------------------------
+
+    public void llenarGridProductos()
+    {
+        var productos = Cliente.ListarProductos();
+
+        gridCatalogo.DataSource = productos;
+        gridCatalogo.DataBind();
+        
     }
 }
