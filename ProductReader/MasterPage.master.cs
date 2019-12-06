@@ -67,7 +67,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         //string dep = selectDtoAgregar.SelectedIndex;
         int nDep = selectDtoAgregar.SelectedIndex;
 
-        if (Cliente.GuardarProducto(codbar, nombre, descripcion, um, pv, "activo", nDep) && b>0)
+        if (Cliente.GuardarProducto(codbar, nombre, descripcion, um, pv, "Activo", nDep) && b>0)
         {
             //Console.WriteLine("True");
             //Console.ReadKey();
@@ -129,27 +129,34 @@ public partial class MasterPage : System.Web.UI.MasterPage
     protected void btnBuscarModificar_Click(object sender, EventArgs e)
     {
         
+
         string codbar = "";
         codbar = txtCodBarModificar.Text;
         if (codbar.Length > 0)
         {
             try
             {
+
+                var productos = Cliente.ListarProductos();
+                var producto = productos.Where(i => i.codigo_producto ==codbar).FirstOrDefault();
+
+
                 activarCamposModificar();
-                string producto = Cliente.BuscarProducto(codbar);
-                string[] separadas;
-                separadas = producto.Split('¬');
+                //string producto = Cliente.BuscarProducto(codbar);
+                //string[] separadas;
+                //separadas = producto.Split('¬');
 
-                txtNombreModificar.Text = separadas[1];
-                txtDescModificar.Text = separadas[2];
-
-                if (separadas[3] == "pza")
+                txtNombreModificar.Text = producto.nombre + "";
+                txtDescModificar.Text = producto.descripcion + "";
+                string um = producto.unidad_medida + "";
+                if (um == "pza")
                     selectUMModificar.SelectedIndex = 1;
                 else selectUMModificar.SelectedIndex = 2;
 
-                txtPreVenModificar.Text = separadas[4];
+                txtPreVenModificar.Text = producto.precio + "";
 
-                selectDtoModificar.SelectedIndex = Int32.Parse(separadas[6]);
+                string dep= producto.fk_id_departamento + "";
+                selectDtoModificar.SelectedIndex = Int32.Parse(dep);
             }
             catch(Exception ex)
             {
@@ -178,7 +185,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         //string dep = selectDtoAgregar.SelectedIndex;
         int nDep = selectDtoModificar.SelectedIndex;
 
-        Cliente.EnviaModificacion(codbar, nombre, descripcion, um, pv, "Activo", nDep);
+        Cliente.EnviaModificacion(codbar, nombre, descripcion, um, pv, "Activo",nDep);
         iniciarCamposModificar();
         llenarGridProductos();
 
@@ -372,15 +379,30 @@ public partial class MasterPage : System.Web.UI.MasterPage
                 string producto = Cliente.BuscarProducto(codbar);
                 string[] separadas;
                 separadas = producto.Split('¬');
+                string status = separadas[5];
+                if (status == "Activo")
+                {
+                    lblNomProdKiosko.Text = separadas[1];
+                    lblDescKiosko.Text = separadas[2];
+                    lblUMKiosko.Text = separadas[3];
+                    lblPrecioKiosko.Text = separadas[4] + " ";
 
-                lblNomProdKiosko.Text = separadas[1];
-                lblDescKiosko.Text = separadas[2];
-                lblUMKiosko.Text = separadas[3];
-                lblPrecioKiosko.Text = separadas[4]+" ";
-
-                selectDtoModificar.SelectedIndex = Int32.Parse(separadas[6]);
-                string dep = selectDtoModificar.Value;
-                lblDepKiosko.Text = dep;
+                    selectDtoModificar.SelectedIndex = Int32.Parse(separadas[6])-9;
+                    string dep = selectDtoModificar.Value;
+                    lblDepKiosko.Text = dep;
+                    string url_img = separadas[7];
+                    imgKiosko.ImageUrl = url_img;
+                }
+                else
+                {
+                    iniciarCamposKiosko();
+                    string error = "El producto está inactivo";
+                    lblNomProdKiosko.Text = error;
+                    lblDescKiosko.Text = "";
+                    lblPrecioKiosko.Text = "";
+                    lblUMKiosko.Text = "";
+                }
+                
             }
             catch (Exception ex)
             {
@@ -414,15 +436,11 @@ public partial class MasterPage : System.Web.UI.MasterPage
     protected void btnBuscarDtoCKiosko_Click(object sender, EventArgs e)
     {
        
-        int nDep = eligeDep();
+        int nDep = selectDtoCKiosko.SelectedIndex;
         var productos = Cliente.ListarProductos();
-        var prodver=productos;
-        foreach(var nx in productos)
-        {
-            
-        }
-        
-        Repeater1.DataSource = productos;
+        var producto = productos.Where(i => i.fk_id_departamento == nDep).ToList();
+
+        Repeater1.DataSource = producto;
         Repeater1.DataBind();
         
     }

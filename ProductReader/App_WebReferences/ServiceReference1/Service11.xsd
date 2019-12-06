@@ -24,7 +24,6 @@
   <xs:complexType name="Productos">
     <xs:sequence>
       <xs:element minOccurs="0" name="Departamentos" nillable="true" type="tns:Departamentos" />
-      <xs:element minOccurs="0" name="Imagenes" nillable="true" type="tns:ArrayOfImagenes" />
       <xs:element minOccurs="0" name="codigo_producto" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="descripcion" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="fk_id_departamento" type="xs:int" />
@@ -33,22 +32,8 @@
       <xs:element minOccurs="0" name="precio" type="xs:double" />
       <xs:element minOccurs="0" name="status" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="unidad_medida" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="url_imagen" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Productos" nillable="true" type="tns:Productos" />
-  <xs:complexType name="ArrayOfImagenes">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Imagenes" nillable="true" type="tns:Imagenes" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfImagenes" nillable="true" type="tns:ArrayOfImagenes" />
-  <xs:complexType name="Imagenes">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Productos" nillable="true" type="tns:Productos" />
-      <xs:element minOccurs="0" name="fk_id_producto" type="xs:int" />
-      <xs:element minOccurs="0" name="id" type="xs:int" />
-      <xs:element minOccurs="0" name="url" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Imagenes" nillable="true" type="tns:Imagenes" />
 </xs:schema>

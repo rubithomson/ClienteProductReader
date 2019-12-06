@@ -31,14 +31,14 @@
   <xs:element name="MostrarCatalogo">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="dep" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="iddep" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="MostrarCatalogoResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="MostrarCatalogoResult" nillable="true" type="q3:ArrayOfanyType" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/ProductReaderService" minOccurs="0" name="MostrarCatalogoResult" nillable="true" type="q3:ArrayOfProductos" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
