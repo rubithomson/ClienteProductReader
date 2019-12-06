@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 
@@ -23,17 +20,19 @@ public partial class MasterPage : System.Web.UI.MasterPage
             llenarGridProductos();
             llenarCatalogoCKiosko();
         }
-            
+        
+
+
 
 
     }
 
-    
+
 
 
     ServiceReference1.Service1Client Cliente = new ServiceReference1.Service1Client();
 
- //------------ INICIA TAB AGREGAR PRODUCTO--------------------------
+    //------------ INICIA TAB AGREGAR PRODUCTO--------------------------
 
     private void actualizarSelectDto()
     {
@@ -42,6 +41,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         {
 
             string n = depto.nombre;
+            string id = depto.id + "";
 
             selectDtoAgregar.Items.Add(n);
             selectDtoModificar.Items.Add(n);
@@ -65,9 +65,14 @@ public partial class MasterPage : System.Web.UI.MasterPage
         string spv = txtPVAgregar.Text;
         float pv = float.Parse(spv);
         //string dep = selectDtoAgregar.SelectedIndex;
-        int nDep = selectDtoAgregar.SelectedIndex;
+        //int nDep = selectDtoAgregar.SelectedIndex;
+        string nDepV = selectDtoAgregar.Value;
+        var productos = Cliente.ListarDepartamentos();
+        var producto = productos.Where(i => i.nombre == nDepV).FirstOrDefault();
+        int nDep = producto.id;
 
-        if (Cliente.GuardarProducto(codbar, nombre, descripcion, um, pv, "Activo", nDep) && b>0)
+
+        if (Cliente.GuardarProducto(codbar, nombre, descripcion, um, pv, "Activo", nDep) && b > 0)
         {
             //Console.WriteLine("True");
             //Console.ReadKey();
@@ -90,7 +95,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
     //------------ TERMINAR TAB AGREGAR PRODUCTO--------------------------
 
 
-//------------ INICIAR TAB MODIFICAR PRODUCTO--------------------------
+    //------------ INICIAR TAB MODIFICAR PRODUCTO--------------------------
     public void iniciarCamposModificar()
     {
         txtCodBarModificar.Text = "";
@@ -128,7 +133,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
     }
     protected void btnBuscarModificar_Click(object sender, EventArgs e)
     {
-        
 
         string codbar = "";
         codbar = txtCodBarModificar.Text;
@@ -136,37 +140,79 @@ public partial class MasterPage : System.Web.UI.MasterPage
         {
             try
             {
-
-                var productos = Cliente.ListarProductos();
-                var producto = productos.Where(i => i.codigo_producto ==codbar).FirstOrDefault();
-
-
                 activarCamposModificar();
-                //string producto = Cliente.BuscarProducto(codbar);
-                //string[] separadas;
-                //separadas = producto.Split('¬');
 
-                txtNombreModificar.Text = producto.nombre + "";
-                txtDescModificar.Text = producto.descripcion + "";
-                string um = producto.unidad_medida + "";
+                string producto = Cliente.BuscarProducto(codbar);
+                string[] separadas;
+                separadas = producto.Split('¬');
+
+                txtNombreModificar.Text = separadas[1];
+                txtDescModificar.Text = separadas[2];
+                string um = separadas[3];
                 if (um == "pza")
                     selectUMModificar.SelectedIndex = 1;
                 else selectUMModificar.SelectedIndex = 2;
 
-                txtPreVenModificar.Text = producto.precio + "";
+                txtPreVenModificar.Text = separadas[4];
 
-                string dep= producto.fk_id_departamento + "";
-                selectDtoModificar.SelectedIndex = Int32.Parse(dep);
+                int dep = Int32.Parse(separadas[5]);
+
+                selectDtoModificar.SelectedIndex = dep-9;
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 iniciarCamposModificar();
                 string error = "No existe el producto";
                 txtNombreModificar.Text = error;
-                
+
             }
 
         }
+        //string codbar = "";
+        //codbar = txtCodBarModificar.Text;
+        //if (codbar.Length > 0)
+        //{
+        //    try
+        //    {
+        //        //activarCamposModificar();
+        //        var productos = Cliente.ListarProductos();
+        //        var producto = productos.Where(i => i.codigo_producto == codbar).FirstOrDefault();
+
+
+
+        //        //string producto = Cliente.BuscarProducto(codbar);
+        //        //string[] separadas;
+        //        //separadas = producto.Split('¬');
+
+        //        txtNombreModificar.Text = producto.nombre;
+        //        txtDescModificar.Text = producto.descripcion;
+        //        string um = producto.unidad_medida;
+        //        if (um == "pza")
+        //            selectUMModificar.SelectedIndex = 1;
+        //        else selectUMModificar.SelectedIndex = 2;
+
+        //        txtPreVenModificar.Text = producto.precio + "";
+
+        //        int dep = producto.fk_id_departamento;
+
+        //        //selectDtoModificar.SelectedIndex = Int32.Parse(dep);
+
+
+        //        var productos2 = Cliente.ListarDepartamentos();
+        //        var producto2 = productos.Where(i => i.id == dep).FirstOrDefault();
+        //        string nomDep = producto2.nombre;
+        //        selectDtoModificar.Value = nomDep;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        iniciarCamposModificar();
+        //        string error = "No existe el producto";
+        //        txtNombreModificar.Text = error;
+
+        //    }
+
+        //}
     }
 
     protected void btnGuardarModificar_Click(object sender, EventArgs e)
@@ -183,9 +229,12 @@ public partial class MasterPage : System.Web.UI.MasterPage
         string spv = txtPreVenModificar.Text;
         float pv = float.Parse(spv);
         //string dep = selectDtoAgregar.SelectedIndex;
-        int nDep = selectDtoModificar.SelectedIndex;
+        string nDepV = selectDtoModificar.Value;
+        var productos = Cliente.ListarDepartamentos();
+        var producto = productos.Where(i => i.nombre == nDepV).FirstOrDefault();
+        int nDep = producto.id;
 
-        Cliente.EnviaModificacion(codbar, nombre, descripcion, um, pv, "Activo",nDep);
+        Cliente.EnviaModificacion(codbar, nombre, descripcion, um, pv, "Activo", nDep);
         iniciarCamposModificar();
         llenarGridProductos();
 
@@ -221,7 +270,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
     }
     protected void btnBuscarEliminar_Click(object sender, EventArgs e)
     {
-        
+
         string codbar = "";
         codbar = txtCodBarEliminar.Text;
         if (codbar.Length > 0)
@@ -243,7 +292,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
                 txtPreVenEliminar.Text = separadas[4];
 
-                selectDtoEliminar.SelectedIndex = Int32.Parse(separadas[6]);
+                selectDtoEliminar.SelectedIndex = Int32.Parse(separadas[6])-9;
             }
             catch (Exception ex)
             {
@@ -276,7 +325,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
 
     }
-   
+
 
 
     //------------ TERMINAR TAB ELIMINAR PRODUCTO--------------------------
@@ -297,22 +346,22 @@ public partial class MasterPage : System.Web.UI.MasterPage
         var registro = Cliente.ListarDepartamentos();
         listaDepto.DataSource = registro;
         listaDepto.DataBind();
-            
-        
+
+
     }
 
     protected void btnAgregarDep_Click(object sender, EventArgs e)
     {
-        
+
         string nomDep = txtNomDept.Text;
-        
-            if (Cliente.AgregarDepartamento(nomDep, "Activo"))
-            {
-                txtNomDept.Text = "";
-            }
-                   
+
+        if (Cliente.AgregarDepartamento(nomDep, "Activo"))
+        {
+            txtNomDept.Text = "";
+        }
+
     }
-    
+
 
 
     // ----------- TERMINA TAB DEPARTAMENTOS ------------------------
@@ -321,26 +370,26 @@ public partial class MasterPage : System.Web.UI.MasterPage
     protected void btnUpload_Click(object sender, EventArgs e)
     {
 
-        
-            byte[] fileToSend = null;
-            string name = "";
 
-            if (img1Agregar.HasFile)
+        byte[] fileToSend = null;
+        string name = "";
+
+        if (img1Agregar.HasFile)
+        {
+            name = img1Agregar.FileName;
+            Stream stream = img1Agregar.FileContent;
+            stream.Seek(0, SeekOrigin.Begin);
+            fileToSend = new byte[stream.Length];
+            int count = 0;
+            while (count < stream.Length)
             {
-                name = img1Agregar.FileName;
-                Stream stream = img1Agregar.FileContent;
-                stream.Seek(0, SeekOrigin.Begin);
-                fileToSend = new byte[stream.Length];
-                int count = 0;
-                while (count < stream.Length)
-                {
-                    fileToSend[count++] = Convert.ToByte(stream.ReadByte());
-                }
+                fileToSend[count++] = Convert.ToByte(stream.ReadByte());
+            }
             Stream stream1 = new MemoryStream(fileToSend);
 
-            }
-
         }
+
+    }
 
 
 
@@ -375,7 +424,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         {
             try
             {
-                
+
                 string producto = Cliente.BuscarProducto(codbar);
                 string[] separadas;
                 separadas = producto.Split('¬');
@@ -402,7 +451,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
                     lblPrecioKiosko.Text = "";
                     lblUMKiosko.Text = "";
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -414,7 +463,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
                 lblUMKiosko.Text = "";
 
             }
-            
+
         }
     }
 
@@ -432,17 +481,17 @@ public partial class MasterPage : System.Web.UI.MasterPage
         Repeater1.DataSource = productos;
         Repeater1.DataBind();
     }
-    
+
     protected void btnBuscarDtoCKiosko_Click(object sender, EventArgs e)
     {
-       
+
         int nDep = selectDtoCKiosko.SelectedIndex;
         var productos = Cliente.ListarProductos();
-        var producto = productos.Where(i => i.fk_id_departamento == nDep).ToList();
+        var producto = productos.Where(i => i.fk_id_departamento == (nDep+9)).ToList();
 
         Repeater1.DataSource = producto;
         Repeater1.DataBind();
-        
+
     }
 
 
@@ -454,6 +503,13 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
         gridCatalogo.DataSource = productos;
         gridCatalogo.DataBind();
-        
+
     }
+
+
+
+
+
+
+
 }

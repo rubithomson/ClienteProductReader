@@ -38,14 +38,14 @@
   <xs:element name="MostrarCatalogoResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/ProductReaderService" minOccurs="0" name="MostrarCatalogoResult" nillable="true" type="q3:ArrayOfProductos" />
+        <xs:element minOccurs="0" name="MostrarCatalogoResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GuardarCambios">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="product" nillable="true" type="q4:ArrayOfanyType" />
+        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="product" nillable="true" type="q3:ArrayOfanyType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -80,7 +80,7 @@
   <xs:element name="MostrarDetallesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="MostrarDetallesResult" nillable="true" type="q5:ArrayOfanyType" />
+        <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="MostrarDetallesResult" nillable="true" type="q4:ArrayOfanyType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -153,7 +153,7 @@
   <xs:element name="ListarProductosResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/ProductReaderService" minOccurs="0" name="ListarProductosResult" nillable="true" type="q6:ArrayOfProductos" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/ProductReaderService" minOccurs="0" name="ListarProductosResult" nillable="true" type="q5:ArrayOfProductos" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
